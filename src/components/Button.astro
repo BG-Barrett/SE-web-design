@@ -1,7 +1,6 @@
 ---
-const { href, theme = "default" } = Astro.props;
-let El = "button";
-if (href) El = "a";
+const { href, theme = "primary" } = Astro.props;
+const El = href ? "a" : "button";
 ---
 
 <El class="button" {href} data-type={theme}>
@@ -43,6 +42,19 @@ if (href) El = "a";
       &:is(:hover, :focus) {
         background-color: $button-accent-background-hover;
         color: $button-accent-color-hover;
+      }
+    }
+
+    &[data-type="outline"] {
+      background-color: $transparent-button-background-color;
+      outline: $transparent-button-outline;
+      outline-offset: $transparent-button-outline-offset;
+      color: $transparent-button-color;
+
+      &:is(:hover, :focus) {
+        background-color: $transparent-button-background-hover;
+        color: $transparent-button-color-hover;
+        outline: $transparent-button-background-hover;
       }
     }
   }

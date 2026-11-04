@@ -1,13 +1,10 @@
 ---
-
+const { label, theme = "default" } = Astro.props;
 ---
 
-<nav aria-label="primary navigation">
+<nav aria-label={label} data-type={theme}>
   <ul class="nav | flex-group">
-    <li><a href="/index.html">Home</a></li>
-    <li><a href="#">Page 2</a></li>
-    <li><a href="#">Page 3</a></li>
-    <li><a href="#">Page 4</a></li>
+    <slot />
   </ul>
 </nav>
 
@@ -19,8 +16,9 @@
     list-style: none;
     font-family: $navigation-font-family;
     font-weight: $navigation-font-weight;
+    font-size: $navigation-font-size;
 
-    a {
+    :global(a) {
       color: $navigation-color;
       text-decoration: $navigation-link-text-decoration;
 

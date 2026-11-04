@@ -1,0 +1,62 @@
+---
+import Button from "../components/Button.astro";
+---
+
+<section class="hero">
+  <img class="hero__image" src="/images/macbook-air-on-desk.jpg" alt="" />
+  <div class="hero__content container flow">
+    <h1 class="hero__heading">Websites That Deliver</h1>
+    <p>
+      I design and build fast, modern websites for small businesses in the South
+      East, built to look great and get you found on Google.
+    </p>
+    <div class="hero__buttons flex-group mx-auto">
+      <Button href="#" theme="primary">
+        Get A Quote
+      </Button>
+      <Button href="#" theme="outline">
+        See My Work
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../styles/abstracts" as *;
+
+  .hero {
+    background-color: $hero-background-color;
+    min-height: 100svh;
+
+    display: grid;
+    text-align: center;
+
+    > * {
+      grid-area: 1/1;
+    }
+
+    &__image {
+      opacity: 0.4;
+      width: 100%;
+      height: 0;
+      min-height: 100%;
+      object-fit: cover;
+    }
+
+    &__content {
+      font-size: $hero-content-font-size;
+      color: $hero-text-color;
+      padding-block: $hero-padding-block;
+      align-self: center;
+      z-index: 1;
+    }
+
+    &__heading {
+      @include heading($hero-heading-font-size, $hero-heading-color);
+    }
+
+    &__buttons {
+      justify-content: center;
+    }
+  }
+</style>

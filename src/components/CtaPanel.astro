@@ -1,0 +1,43 @@
+---
+import Form from "../components/Form.astro";
+import type { ComponentProps } from "astro/types";
+
+interface Props {
+  theme?: "primary" | "centered";
+  src: string;
+  alt: string;
+  show?: ComponentProps<typeof Form>["show"];
+  buttonText?: string;
+  idPrefix?: string;
+}
+
+const { theme = "primary", src, alt, show, buttonText, idPrefix } = Astro.props;
+---
+
+<div class="cta-panel even-columns" data-type={theme}>
+  <img class="cta-panel__image" {src} {alt} />
+
+  <Form show={show} buttonText={buttonText} idPrefix={idPrefix} />
+</div>
+
+<style lang="scss">
+  @use "../styles/abstracts/" as *;
+
+  .cta-panel {
+    padding: $size-10;
+    --grid-gap: #{$size-10};
+    border: $cta-panel-border;
+    border-radius: $cta-panel-border-radius;
+    &__image {
+      width: 100%;
+      aspect-ratio: 2 / 1;
+    }
+
+    &[data-type="primary"] {
+      background-color: $cta-panel-primary-background-color;
+    }
+
+    &[data-type="centered"] {
+    }
+  }
+</style>

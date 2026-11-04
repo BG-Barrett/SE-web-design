@@ -1,0 +1,51 @@
+---
+import Card from "../components/Card.astro";
+
+const services = [
+  {
+    title: "Web Design",
+    text: "I design clean, modern websites that reflect your brand and are easy for visitors to use. Every site is fully responsive, looking great on phones, tablets and desktops alike.",
+    image: "/images/macbook-air-on-desk.jpg",
+    alt: "",
+  },
+  {
+    title: "SEO",
+    text: "I optimise your site so it ranks higher on Google and customers can find you. From keyword research to fast load times and local search, I help bring steady traffic.",
+    image: "/images/macbook-air-on-desk.jpg",
+    alt: "",
+  },
+  {
+    title: "Hosting",
+    text: "I build fast, secure and reliable websites with clean, modern code. Whether it’s a brochure site, online shop or custom feature, it will run smoothly and grow with your business.",
+    image: "/images/macbook-air-on-desk.jpg",
+    alt: "",
+  },
+];
+---
+
+<section class="services section">
+  <div class="services__content container text-center">
+    <h2 class="heading-2 padding-block-end-10">Our Services</h2>
+
+    <ul class="services__cards grid-auto-fit" role="list">
+      {services.map((service) => (
+        <Card El="li" TitleLevel="h3" title={service.title}>
+          <img class="services__image" src={service.image} alt={service.alt} />
+          <p>{service.text}</p>
+        </Card>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../styles/abstracts" as *;
+
+  .services {
+    &__image {
+      border-radius: $services-image-border-radius;
+      object-fit: fill;
+      aspect-ratio: 3 / 2;
+    }
+  }
+</style>

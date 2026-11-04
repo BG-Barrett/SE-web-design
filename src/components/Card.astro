@@ -1,9 +1,11 @@
 ---
-const { El = "div", TitleLevel = "h2", title } = Astro.props;
+const { El = "div", TitleLevel = "h2", title, theme = "default" } = Astro.props;
 ---
 
-<El class="card">
-  <TitleLevel class="card__heading">{title}</TitleLevel>
+<El class="card" data-type={theme}>
+  {title && (
+    <TitleLevel class="card__heading padding-block-end-2">{title}</TitleLevel>
+  )}
   <slot />
 </El>
 
@@ -11,18 +13,23 @@ const { El = "div", TitleLevel = "h2", title } = Astro.props;
   @use "../styles/abstracts" as *;
 
   .card {
+    align-content: start;
     display: grid;
     gap: $card-flow-spacing;
     padding: $card-padding;
-    background-color: $card-background-default;
+    background-color: $card-background-color;
     font-family: $card-font-family;
     color: $card-color-default;
+    outline: $card-outline;
     line-height: $card-line-height;
     box-shadow: $card-shadow;
     border-radius: $card-border-radius;
 
     &__heading {
       @include heading($card-heading-font-size, $card-heading-color-default);
+    }
+
+    &[data-type="review"] {
     }
   }
 </style>

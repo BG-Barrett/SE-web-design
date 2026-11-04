@@ -1,10 +1,30 @@
 ---
+import LogoLink from "./LogoLink.astro";
 
+const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <div class="container">
-    <p>Footer content here!</p>
+  <div class="site-footer__inner container">
+    <div class="site-footer__top">
+      <div class="site-footer__brand flow">
+        <LogoLink />
+        <p>Build your online presence</p>
+      </div>
+
+      <nav aria-label="footer">
+        <ul class="site-footer__links flex-group" role="list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/articles">Articles</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <p class="site-footer__copyright">
+      &copy; {year} South East Web Design. All rights reserved.
+    </p>
   </div>
 </footer>
 
@@ -14,6 +34,7 @@
   .site-footer {
     background-color: $footer-background-color;
     color: $footer-text-color;
+    padding-block: $size-12 $size-8;
 
     a {
       color: $footer-link-color;
@@ -23,6 +44,31 @@
       &:is(:hover, :focus) {
         color: $footer-link-color-hover;
       }
+    }
+
+    &__inner {
+      display: grid;
+      gap: $size-10;
+    }
+
+    &__top {
+      display: grid;
+      gap: $size-8;
+
+      @include mq(medium) {
+        grid-template-columns: 1fr auto;
+        align-items: start;
+      }
+    }
+
+    &__links {
+      list-style: none;
+    }
+
+    &__copyright {
+      font-size: $font-size-300;
+      padding-block-start: $size-6;
+      border-block-start: 1px solid currentColor;
     }
   }
 </style>

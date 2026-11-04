@@ -1,19 +1,37 @@
 ---
+import Button from "../components/Button.astro";
+import LogoLink from "../components/LogoLink.astro";
 import PrimaryNavigation from "./PrimaryNavigation.astro";
 const { skipTo = "#main" } = Astro.props;
 ---
 
 <header class="site-header">
-  <a href={skipTo} class="skip-navigation">Skip to content</a>
+  <a href={skipTo} class="skip-navigation">
+    Skip to content
+  </a>
 
   <div class="container">
     <div class="site-header__inner">
-      <a href="/index.html">
-        <img aria-hidden="true" src="/images/logo.svg" alt="" />
-        <p class="visually-hidden">NAME_OF_SITE</p>
-      </a>
-
-      <PrimaryNavigation />
+      <LogoLink />
+      <div class="flex-group align-center">
+        <PrimaryNavigation label="primary">
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/articles">Articles</a>
+          </li>
+          <li>
+            <a href="/about">About</a>
+          </li>
+          <li>
+            <a href="/contact">Contact</a>
+          </li>
+        </PrimaryNavigation>
+        <Button href="/quote" theme="primary">
+          Get A Quote
+        </Button>
+      </div>
     </div>
   </div>
 </header>
@@ -22,9 +40,13 @@ const { skipTo = "#main" } = Astro.props;
   @use "../styles/abstracts" as *;
 
   .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
     color: $site-header-color;
     background-color: $site-header-background-color;
     padding: $site-header-padding;
+    border-bottom: $site-header-border-bottom;
 
     &__inner {
       display: flex;
